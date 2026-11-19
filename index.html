@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#ffe6f2">
+<title>Аиша. 20</title>
+<meta property="og:title" content="Аиша. 20 — персональная выставка">
+<meta property="og:description" content="Вход для именинницы бесплатный. Горы, музеи, костры, шахматы и 20 свечей.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800;900&family=Rubik+Bubbles&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: a one-column museum you scroll through on a phone. Entrance with a huge "20" filled with her summit photo,
+   then halls of framed photos with museum wall labels, a cake with 20 candles, a chess puzzle and a letter. */
+:root{
+  --wall:#ffe6f2; --wall2:#ffc9e1; --ink:#4b1840; --ink2:#8a4a7c;
+  --peach:#ff3d8f; --rose:#ff9fcb; --sky:#9b6bff; --gold:#ffcf4a; --frame:#ff6fae;
+  --display:"Rubik Bubbles","Unbounded",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--wall) radial-gradient(circle at 12px 12px,rgba(255,61,143,.10) 3px,transparent 4px) 0 0/34px 34px;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+button,a{touch-action:manipulation}
+.wrap{max-width:520px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display)}
+p{margin:0}
+
+/* ---------- entrance ---------- */
+.entrance{padding-block:28px 18px;display:flex;flex-direction:column;gap:14px}
+.museum{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:13px;color:var(--ink2)}
+.twenty{font-family:"Unbounded",system-ui,sans-serif;font-weight:900;font-size:min(62vw,300px);line-height:.82;letter-spacing:-.04em;margin:6px 0 0 -6px;
+  background:url("img/furmanov.jpg") center 62%/cover;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 0 rgba(29,27,34,.08))}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.twenty{color:var(--sky)}}
+.name{font-size:clamp(30px,9vw,44px);font-weight:800;line-height:1.05}
+.name small{display:block;font-family:var(--body);font-size:16px;font-weight:700;color:var(--ink2);margin-top:8px;line-height:1.4}
+
+.ticket{position:relative;display:grid;grid-template-columns:1fr 92px;background:linear-gradient(120deg,#ff3d8f,#9b6bff);color:var(--wall);border-radius:14px;overflow:hidden;cursor:pointer;border:0;padding:0;text-align:left;font:inherit;width:100%}
+.ticket .main{padding:14px 14px 14px 16px;display:flex;flex-direction:column;gap:2px}
+.ticket b{font-family:var(--display);font-weight:800;font-size:15px}
+.ticket span{font-size:13px;opacity:.8;font-weight:600}
+.ticket .stub{border-left:2px dashed rgba(255,255,255,.6);display:grid;place-items:center;font-family:var(--display);font-size:28px;color:#fff;transition:transform .6s cubic-bezier(.3,1.4,.5,1),opacity .6s}
+.ticket.torn .stub{transform:translate(30px,40px) rotate(24deg);opacity:0}
+.ticket.torn .main span::after{content:" · билет погашен, проходи!"}
+
+.countdown{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:12px 14px;border:1.5px solid var(--wall2)}
+.countdown .clock{font-family:var(--display);font-weight:800;font-size:24px;font-variant-numeric:tabular-nums;color:var(--peach)}
+.countdown p{font-weight:700;font-size:14px;color:var(--ink2);line-height:1.35}
+
+/* ---------- halls ---------- */
+.hall{padding-block:30px 6px;display:flex;flex-direction:column;gap:22px}
+.hall-head{display:flex;flex-direction:column;gap:4px;border-top:2px solid var(--ink);padding-top:12px}
+.hall-head .no{font-weight:800;font-size:13px;color:var(--peach)}
+.hall-head h2{font-size:clamp(22px,6.4vw,28px);font-weight:800;line-height:1.15}
+.hall-head p{color:var(--ink2);font-weight:600;font-size:15px}
+
+.work{display:flex;flex-direction:column;gap:10px}
+.frame{background:#fff;padding:12px;border:10px solid var(--frame);border-image:repeating-linear-gradient(45deg,#ff6fae 0 10px,#fff 10px 20px,#9b6bff 20px 30px,#fff 30px 40px) 10;border-radius:6px;box-shadow:0 18px 30px -16px rgba(255,61,143,.55);position:relative}
+.frame img{display:block;width:100%;height:auto;max-height:78vh;object-fit:cover;border-radius:4px}
+.frame.light{border-image:repeating-linear-gradient(45deg,#ffcf4a 0 10px,#fff 10px 20px,#ff6fae 20px 30px,#fff 30px 40px) 10}
+.label{background:#fff;border-left:4px solid var(--peach);border-radius:0 12px 12px 0;padding:10px 12px;display:flex;flex-direction:column;gap:3px;max-width:92%}
+.label h3{font-family:var(--body);font-weight:800;font-size:16px;line-height:1.3}
+.label .meta{font-size:13px;color:var(--ink2);font-weight:700}
+.label .note{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.45}
+.work.right .label{align-self:flex-end;border-left:0;border-right:4px solid var(--peach);border-radius:12px 0 0 12px;text-align:right}
+.hall-head{position:relative;padding-right:84px}
+.hall-head .host{position:absolute;right:-6px;top:4px;width:84px}
+.hall-head .host .pony{width:84px;animation:hop 1.6s ease-in-out infinite}
+.hall-head h2{font-weight:400;color:var(--peach);text-shadow:2px 2px 0 #fff}
+.name{color:var(--peach);text-shadow:3px 3px 0 #fff;font-weight:400}
+.gummy{position:fixed;z-index:0;pointer-events:none;width:46px;opacity:.55;animation:float 9s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+.wrap{position:relative;z-index:1}
+.tinkov{position:fixed;bottom:calc(70px + env(safe-area-inset-bottom,0px));z-index:25;border:0;background:none;padding:0;cursor:pointer;width:min(36vw,170px);transition:transform .7s cubic-bezier(.3,1.5,.5,1)}
+.tinkov img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(75,24,64,.35))}
+.tinkov .say{position:absolute;bottom:92%;background:#fff;border:2.5px solid var(--peach);border-radius:16px;padding:8px 10px;font:800 13px/1.3 var(--body);color:var(--ink);width:min(58vw,240px);text-align:left;box-shadow:0 6px 0 rgba(255,61,143,.25)}
+.tinkov.l{left:0;transform:translateX(-120%)}.tinkov.l .say{left:30%}
+.tinkov.r{right:0;transform:translateX(120%)}.tinkov.r .say{right:30%}
+.tinkov.l.on{transform:translateX(-8%) rotate(6deg)}.tinkov.r.on{transform:translateX(8%) rotate(-6deg)}
+.tinkov .tag{display:block;font-size:10.5px;color:var(--ink2);margin-top:3px}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.pair .frame{padding:7px;border-width:6px}
+.pair .label{max-width:100%;padding:8px 9px}
+.pair .label h3{font-size:14px}
+.pair .label .note{font-size:13px}
+
+.like{position:absolute;right:10px;bottom:10px;border:0;border-radius:999px;background:rgba(255,255,255,.92);font:800 13px var(--body);color:var(--ink);padding:7px 11px;box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer}
+.like.on{background:var(--peach);color:#fff}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#fff;border-radius:14px;padding:12px;border:1.5px solid var(--wall2);display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;font-weight:700;color:var(--ink2);line-height:1.35}
+.stat.wide{grid-column:1/-1}
+
+/* ---------- cake ---------- */
+.cake-box{background:#fff;border-radius:20px;padding:16px 12px 18px;border:1.5px solid var(--wall2);display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.cake{width:100%;max-width:360px;height:auto;touch-action:manipulation}
+.flame{cursor:pointer;transform-origin:center bottom;animation:flick .5s ease-in-out infinite alternate}
+.flame.out{display:none}
+@keyframes flick{from{transform:scaleY(1) rotate(-3deg)}to{transform:scaleY(1.12) rotate(3deg)}}
+.smoke{opacity:0}
+.smoke.go{animation:smoke 1.2s ease-out forwards}
+@keyframes smoke{0%{opacity:.7;transform:translateY(0)}100%{opacity:0;transform:translateY(-26px)}}
+.counter{font-family:var(--display);font-weight:800;font-size:18px}
+.hint{font-size:14px;color:var(--ink2);font-weight:700}
+
+/* ---------- chess ---------- */
+.chess-box{background:#fff;border-radius:20px;padding:16px 14px 18px;border:1.5px solid var(--wall2);display:flex;flex-direction:column;gap:12px}
+.board{display:grid;grid-template-columns:repeat(8,1fr);width:100%;max-width:360px;aspect-ratio:1;align-self:center;border:6px solid var(--frame);border-radius:4px}
+.sq{border:0;padding:0;font-size:min(8.5vw,38px);line-height:1;display:grid;place-items:center;cursor:pointer;font-family:"Segoe UI Symbol","Apple Symbols",serif;color:#111}
+.sq.l{background:#eedfc8}.sq.d{background:#b58863}
+.sq.sel{box-shadow:inset 0 0 0 4px var(--peach)}
+.sq.hit{background:#7ccf9b!important}
+.sq.miss{background:#ff9d93!important}
+.sq .w{color:#fff;-webkit-text-stroke:1.2px #111;text-shadow:0 1px 0 #111}
+.answer{min-height:44px;font-weight:700;font-size:15px;background:var(--wall);border-radius:12px;padding:10px 12px}
+.answer:empty{display:none}
+
+/* ---------- ponies ---------- */
+.pony-row{display:flex;justify-content:center;align-items:flex-end}
+.pony-row .pony{width:min(18%,86px);margin:0 -5px;animation:hop 1.3s ease-in-out infinite}
+.pony-row .pony:nth-child(2n){animation-delay:.2s}.pony-row .pony:nth-child(3n){animation-delay:.4s}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---------- letter ---------- */
+.letter{background:#fff;border-radius:4px;padding:22px 18px;box-shadow:0 20px 40px -24px rgba(29,27,34,.5);display:flex;flex-direction:column;gap:12px;font-size:16.5px;font-weight:600;position:relative}
+.letter::before{content:"";position:absolute;top:-10px;left:50%;width:90px;height:22px;margin-left:-45px;background:rgba(242,167,182,.75);transform:rotate(-3deg)}
+.letter h2{font-size:clamp(22px,6.5vw,28px);font-weight:800}
+.letter .sign{font-weight:800;text-align:right}
+
+.btn{display:block;width:100%;text-align:center;text-decoration:none;border:0;cursor:pointer;font:800 17px var(--body);padding:15px 18px;border-radius:999px;background:var(--sky);color:#fff;box-shadow:0 5px 0 #6a3fd0}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #6a3fd0}
+.btn.peach{background:var(--peach);color:#fff;box-shadow:0 5px 0 #b8155e}
+.btn.tg{background:#2aa3df;color:#fff;box-shadow:0 5px 0 #17739f}
+.btn:focus-visible,.sq:focus-visible,.ticket:focus-visible,.like:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+
+footer{padding-block:28px 40px;text-align:center;font-size:13px;font-weight:700;color:var(--ink2)}
+
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+.pop{position:fixed;pointer-events:none;z-index:31;font-size:22px;animation:pop 1s ease-out forwards}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+.reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){
+  .reveal.pre{opacity:.25;transform:translateY(18px)}
+  .reveal{transition:opacity .7s ease,transform .7s ease}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:700px){.twenty{font-size:300px}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<div class="wrap">
+
+<!-- ENTRANCE -->
+<header class="entrance">
+  <div class="museum"><span>Музей одного человека</span><span>20.11.2026</span></div>
+  <div class="twenty" aria-hidden="true">20</div>
+  <h1 class="name">Аиша. 20<small>Персональная выставка к двадцатилетию. Горы, музеи, костры, шахматы и немного хаоса.</small></h1>
+  <div class="countdown" id="cd">
+    <div class="clock" id="clock">--:--:--</div>
+    <p id="cdText">до открытия выставки. Экспонат ещё девятнадцатилетний.</p>
+  </div>
+  <button class="ticket" id="ticket" aria-label="Погасить билет">
+    <div class="main"><b>Билет № 20 · Именинница</b><span>Вход бесплатный, пожизненно</span></div>
+    <div class="stub">20</div>
+  </button>
+</header>
+
+<!-- HALL 1 -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 1</span><h2>Высота</h2><p>Работы, созданные на высоте, где обычные люди уже ноют и просят привал.</p></div>
+
+  <figure class="work reveal" style="margin:0">
+    <div class="frame"><img src="img/furmanov.jpg" alt="Аиша на вершине пика Фурманова" loading="lazy"><button class="like" data-like>♡ 228</button></div>
+    <figcaption class="label"><h3>«Покорительница»</h3><span class="meta">Пик Фурманова · август 2026 · ветер, облака, ноль сомнений</span><span class="note">Смотрители отмечают: на вершине она стоит так же уверенно, как ферзь в центре доски.</span></figcaption>
+  </figure>
+
+  <figure class="work right reveal" style="margin:0">
+    <div class="frame"><img src="img/bigalmaty.jpg" alt="Аиша в панаме и горнолыжных очках у Большого Алматинского пика" loading="lazy"><button class="like" data-like>♡ 262</button></div>
+    <figcaption class="label"><h3>«Солнце, ты не пройдёшь»</h3><span class="meta">Большой Алматинский пик · 2026 · панама, очки, розовый платок</span><span class="note">Защита от ультрафиолета уровня «готова к выходу в открытый космос». Солнце пыталось. У солнца не получилось.</span></figcaption>
+  </figure>
+
+  <figure class="work reveal" style="margin:0">
+    <div class="frame"><img src="img/burabay.jpg" alt="Аиша сидит на скале в Бурабае" loading="lazy"><button class="like" data-like>♡ 173</button></div>
+    <figcaption class="label"><h3>«Я просто присела. На скалу. Высоко»</h3><span class="meta">Бурабай · октябрь 2026 · гранит, небо, 🪶</span><span class="note">Скульптурная композиция о том, что «немного прогуляться» в её понимании — это скалолазание.</span></figcaption>
+  </figure>
+
+  <div class="stats reveal">
+    <div class="stat"><b>2+</b><span>покорённых пика только за это лето</span></div>
+    <div class="stat"><b>∞</b><span>раз сказала «ещё чуть-чуть до вершины»</span></div>
+    <div class="stat wide"><b>Гипотеза музея</b><span>Где-то в Заилийском Алатау уже ждёт третий пик. Он просто пока не знает, что его покорят.</span></div>
+  </div>
+</section>
+
+<!-- HALL 2 -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 2</span><h2>Искусство смотреть на искусство</h2><p>Здесь экспонат смотрит на экспонаты. Кураторы до сих пор спорят, кто из них главный.</p></div>
+
+  <figure class="work reveal" style="margin:0">
+    <div class="frame light"><img src="img/art.jpg" alt="Аиша в галерее перед яркими картинами" loading="lazy"><button class="like" data-like>♡ 210</button></div>
+    <figcaption class="label"><h3>«Девушка, на которую смотрит искусство»</h3><span class="meta">Галатапорт, Стамбул · ноябрь 2026 · холст, акрил, восхищение</span><span class="note">Картины на стене яркие, но посетители почему-то фотографируют её.</span></figcaption>
+  </figure>
+
+  <figure class="work right reveal" style="margin:0">
+    <div class="frame light"><img src="img/frozentime.jpg" alt="Аиша рассматривает картину со степью и всадниками" loading="lazy"><button class="like" data-like>♡ 221</button></div>
+    <figcaption class="label"><h3>«Искусство — это застывшее время»</h3><span class="meta">2025 · цитата автора экспоната</span><span class="note">На картине степь, всадники и целая эпоха. А мы застыли на той, кто смотрит.</span></figcaption>
+  </figure>
+
+  <div class="pair reveal">
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/books.jpg" alt="Аиша читает книгу в книжном магазине" loading="lazy"></div>
+      <figcaption class="label"><h3>«Читающая нация»</h3><span class="note">Тема Посвящения? Нет, её образ жизни.</span></figcaption>
+    </figure>
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/newchapter.jpg" alt="Аиша в соломенной шляпе прикрывает лицо" loading="lazy"></div>
+      <figcaption class="label"><h3>«New Chapter»</h3><span class="note">Шляпа, солнце, загадочный взгляд. 2026.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- HALL 3 -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 3</span><h2>Тёплый период</h2><p>Костры, закаты, палатки и Турция. Самый уютный зал музея, здесь пахнет дымом и чаем.</p></div>
+
+  <div class="pair reveal">
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/fire.jpg" alt="Костёр" loading="lazy"></div>
+      <figcaption class="label"><h3>«Огонь»</h3><span class="note">Бурабай, 2025. Зефир не сохранился.</span></figcaption>
+    </figure>
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/tent.jpg" alt="Вид из палатки на лес" loading="lazy"></div>
+      <figcaption class="label"><h3>«Номер с видом на лес»</h3><span class="note">Пять звёзд. Буквально, ночью.</span></figcaption>
+    </figure>
+  </div>
+
+  <figure class="work reveal" style="margin:0">
+    <div class="frame"><img src="img/mountsunset.jpg" alt="Закат в горах из беседки" loading="lazy"></div>
+    <figcaption class="label"><h3>«Закат по расписанию»</h3><span class="meta">Горы · 2026</span><span class="note">Она всегда знает, где встать, чтобы солнце село правильно.</span></figcaption>
+  </figure>
+
+  <div class="pair reveal">
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/turkey.jpg" alt="Старая улочка в Турции" loading="lazy"></div>
+      <figcaption class="label"><h3>«ist / ant 🇹🇷»</h3><span class="note">Улица, в которую хочется вернуться.</span></figcaption>
+    </figure>
+    <figure class="work" style="margin:0">
+      <div class="frame"><img src="img/moon.jpg" alt="Аиша ночью в оранжевом платке" loading="lazy"></div>
+      <figcaption class="label"><h3>«Moon and Stars»</h3><span class="note">Июнь 2026. Ночь светится от платка.</span></figcaption>
+    </figure>
+  </div>
+
+  <figure class="work reveal" style="margin:0">
+    <div class="frame light"><img src="img/tea2020.jpg" alt="Чай с цветами в руках, 2020 год" loading="lazy"><button class="like" data-like>♡ 💗</button></div>
+    <figcaption class="label"><h3>«Ранний период»</h3><span class="meta">Архив, 2020 · чай, цветы, кольца</span><span class="note">Уже тогда было понятно: эстетика у неё не хобби, а судьба.</span></figcaption>
+  </figure>
+</section>
+
+<!-- HALL: QUIZ -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал</span><h2>Викторина «Знаешь ли ты экспонат?»</h2><p>10 вопросов: про Аишу, про жизнь велосипедиста в городе и про шахматы. Если проходит сама Аиша, музей проверяет, знает ли экспонат себя.</p></div>
+  <div class="chess-box reveal" id="quiz" aria-live="polite"></div>
+</section>
+
+<!-- HALL 4: CAKE -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 4</span><h2>Интерактивная инсталляция «20 свечей»</h2><p>Нажимай на огоньки, чтобы задуть. Желание загадывать заранее, музей не несёт ответственности за исполнение. Шучу, несёт.</p></div>
+  <div class="cake-box reveal">
+    <svg class="cake" id="cake" viewBox="0 0 360 260" role="img" aria-label="Торт с двадцатью свечами"></svg>
+    <div class="counter" id="left">Осталось: 20</div>
+    <div class="hint" id="cakeHint">Подсказка: можно по одной, можно все сразу</div>
+    <button class="btn peach" id="blowAll">Задуть все разом</button>
+  </div>
+</section>
+
+<!-- HALL 5: CHESS -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 5</span><h2>Задача для тренера</h2><p>Специально для chess coach. Белые начинают и ставят мат в один ход. Нажми на ладью, потом на нужное поле.</p></div>
+  <div class="chess-box reveal">
+    <div class="board" id="board" aria-label="Шахматная доска"></div>
+    <div class="answer" id="answer" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- HALL 6: PONIES + LETTER -->
+<section class="hall">
+  <div class="hall-head"><span class="no">Зал 6</span><h2>Специальные гости</h2><p>Пони-отряд с тропы на Посвящение узнал, что сегодня праздник, и прискакал без приглашения.</p></div>
+  <div class="pony-row reveal" id="ponies"></div>
+
+  <article class="letter reveal">
+    <h2>Аиша, с двадцатилетием!</h2>
+    <p>Тебе двадцать, и, кажется, это самый правильный возраст для человека, который в девятнадцать уже покорял пики, учил людей шахматам, бродил по музеям Стамбула и успевал учиться в MNU.</p>
+    <p>Желаю, чтобы каждая новая вершина открывала вид ещё красивее прошлого. Чтобы в каждой партии находилась красивая комбинация, а соперники сдавались ещё до эндшпиля. Чтобы костры были тёплыми, закаты вовремя, книги интересными, а палатка не протекала.</p>
+    <p><b>Ты восхищаешь людей.</b> Тем, как много ты работаешь, даже когда никто не смотрит: учёба, ученики, турниры, квизы, проекты, горы. И тем, как ты остаёшься верна себе, своей вере и своим принципам, даже когда проще было бы иначе. Это видно, правда.</p>
+    <p>Всё это окупится. Может, не сегодня и не завтра, но однажды ты оглянешься и поймёшь, что каждая трудная тропа вела именно туда, куда нужно. Пусть Всевышний вознаградит каждое твоё усилие.</p>
+    <p>И главное: чтобы рядом были люди, с которыми хочется идти дальше по тропе. Ну, ты знаешь, где их найти.</p>
+    <p class="sign">С днём рождения! Твой друг, который снова сделал тебе сайт 🏔️</p>
+  </article>
+
+  <a class="btn tg" id="thanks" href="https://t.me/wkejbd?text=%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%B2%D1%8B%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D1%83%20%F0%9F%8E%82" target="_blank" rel="noopener">Сказать спасибо в Telegram</a>
+  <button class="btn" id="party">Ещё раз салют 🎉</button>
+</section>
+
+<footer>Музей «Аиша. 20» · вход свободный · фотографировать экспонаты можно, экспонат разрешил</footer>
+</div>
+
+<script src="ponies.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- effects ---------- */
+const fx=$('fx'),ctx=fx.getContext('2d');let parts=[],running=false;
+function sizeFx(){fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+sizeFx();addEventListener('resize',sizeFx);
+function confetti(x,y,n=140){ if(RM)return; x=x??innerWidth/2;y=y??innerHeight*.35;
+  const C=["#ff3d8f","#ff9fcb","#9b6bff","#ffcf4a","#7ee0b8","#ffffff"];
+  for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*15,vy:Math.random()*-13-3,r:Math.random()*6+4,c:C[i%C.length],a:Math.random()*6,l:0});
+  if(!running){running=true;requestAnimationFrame(tick);} }
+function tick(){ctx.clearRect(0,0,innerWidth,innerHeight);
+  parts.forEach(p=>{p.vy+=.33;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=.15;p.l++;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillStyle=p.c;ctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);ctx.restore();});
+  parts=parts.filter(p=>p.y<innerHeight+30&&p.l<240);
+  if(parts.length)requestAnimationFrame(tick);else{running=false;ctx.clearRect(0,0,innerWidth,innerHeight);} }
+function pops(x,y,list,n=8){ if(RM)return; for(let i=0;i<n;i++){const s=document.createElement('span');s.className='pop';s.textContent=list[i%list.length];
+  s.style.left=x+'px';s.style.top=y+'px';s.style.setProperty('--dx',(Math.random()*160-80)+'px');s.style.setProperty('--dy',(Math.random()*-140-20)+'px');
+  document.body.appendChild(s);setTimeout(()=>s.remove(),1000);} }
+
+/* ---------- countdown to 20.11.2026 00:00 Astana (UTC+5) ---------- */
+const BDAY=Date.UTC(2026,10,19,19,0,0);
+let celebrated=false;
+function tickClock(){const d=BDAY-Date.now();
+  if(d<=0){ $('clock').textContent='20!'; $('cdText').textContent='Выставка открыта. Экспонату официально двадцать. С днём рождения!';
+    if(!celebrated){celebrated=true;setTimeout(()=>confetti(),400);} return; }
+  const h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);
+  $('clock').textContent=[h,m,s].map(v=>String(v).padStart(2,'0')).join(':');}
+tickClock();setInterval(tickClock,1000);
+
+/* ---------- ticket ---------- */
+$('ticket').onclick=e=>{$('ticket').classList.add('torn');pops(e.clientX,e.clientY,['🎟️','✨','🎉'],10);};
+
+/* ---------- likes ---------- */
+document.querySelectorAll('[data-like]').forEach(b=>{b.onclick=e=>{
+  const on=b.classList.toggle('on');const t=b.textContent.replace(/[♡♥]\s*/,'');const n=parseInt(t);
+  b.textContent=(on?'♥ ':'♡ ')+(isNaN(n)?t:(on?n+1:n-1));if(on)pops(e.clientX,e.clientY,['♥','🩷','✨'],7);};});
+
+/* ---------- cake with 20 candles ---------- */
+(function(){
+  const svg=$('cake');let html=`
+   <ellipse cx="180" cy="244" rx="160" ry="12" fill="#e7e4dd"/>
+   <rect x="40" y="150" width="280" height="90" rx="14" fill="#f2a7b6"/>
+   <rect x="40" y="150" width="280" height="22" rx="10" fill="#fff"/>
+   <path d="M40 168 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0 q14 20 28 0" fill="#fff"/>
+   <rect x="40" y="208" width="280" height="10" fill="#ff7a6b" opacity=".6"/>
+   <text x="180" y="236" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="800" font-size="18" fill="#fff">АИША · 20</text>`;
+  const cols=10;
+  for(let i=0;i<20;i++){const row=Math.floor(i/cols),c=i%cols;const x=58+c*27+(row?13:0),y=row?128:108;const col=['#3c6fb0','#e9b54a','#ff7a6b','#7ccf9b'][i%4];
+    html+=`<rect x="${x-3.5}" y="${y}" width="7" height="${row?26:44}" rx="2" fill="${col}"/>
+      <path class="smoke" id="sm${i}" d="M${x} ${y-4} q-5 -8 0 -14 q5 -6 0 -12" stroke="#bbb" stroke-width="2" fill="none"/>
+      <g class="flame" data-i="${i}" role="button" aria-label="Свеча ${i+1}"><rect x="${x-12}" y="${y-30}" width="24" height="32" fill="transparent"/><path d="M${x} ${y-22} q8 10 0 18 q-8 -8 0 -18z" fill="#ffb02e"/><path d="M${x} ${y-14} q4 5 0 9 q-4 -4 0 -9z" fill="#fff4b0"/></g>`;}
+  svg.innerHTML=html;
+  let left=20;
+  const blow=(f,silent)=>{if(f.classList.contains('out'))return;f.classList.add('out');$('sm'+f.dataset.i).classList.add('go');left--;
+    $('left').textContent=left?`Осталось: ${left}`:'Все 20 задуты!';
+    if(!left){$('cakeHint').textContent='Желание принято в обработку. Срок исполнения: этот год. 🎂';$('blowAll').textContent='Зажечь заново';confetti();pops(innerWidth/2,innerHeight/2,['🎂','🎉','✨','🩷'],14);}
+    else if(!silent&&left===10){$('cakeHint').textContent='Половина! Двадцать лет — это серьёзная дыхалка, горная.';}};
+  svg.querySelectorAll('.flame').forEach(f=>f.addEventListener('click',()=>blow(f)));
+  $('blowAll').onclick=()=>{
+    if(left===0){left=20;svg.querySelectorAll('.flame').forEach(f=>f.classList.remove('out'));svg.querySelectorAll('.smoke').forEach(s=>s.classList.remove('go'));$('left').textContent='Осталось: 20';$('blowAll').textContent='Задуть все разом';$('cakeHint').textContent='Свечи снова горят. Можно загадать ещё одно.';return;}
+    [...svg.querySelectorAll('.flame:not(.out)')].forEach((f,k)=>setTimeout(()=>blow(f,true),k*60));};
+})();
+
+/* ---------- chess: mate in one (Ra8#) ---------- */
+(function(){
+  const V='︎';
+  const G={R:'♖'+V,K:'♔'+V,P:'♙'+V,k:'♚'+V,p:'♟'+V};
+  const pos={a1:'R',g1:'K',g8:'k',f7:'p',g7:'p',h7:'p',f2:'P',g2:'P',h2:'P'};
+  const files='abcdefgh';const board=$('board');let sel=null;let solved=false;
+  for(let r=8;r>=1;r--)for(let f=0;f<8;f++){const sq=files[f]+r;const b=document.createElement('button');
+    b.className='sq '+((f+r)%2?'l':'d');b.id='sq-'+sq;b.setAttribute('aria-label',sq);
+    const p=pos[sq];if(p)b.textContent=G[p];
+    b.onclick=e=>click(sq,b,e);board.appendChild(b);}
+  const say=t=>$('answer').innerHTML=t;
+  function click(sq,b,e){ if(solved)return;
+    if(sq==='a1'){sel='a1';document.querySelectorAll('.sq').forEach(x=>x.classList.remove('sel','miss'));b.classList.add('sel');say('Ладья выбрана. Куда ходим, тренер?');return;}
+    if(!sel){say(pos[sq]&&/[A-Z]/.test(pos[sq])?'Этой фигурой мата не будет. Посмотри на ладью в углу 👀':'Сначала выбери белую ладью на a1.');return;}
+    if(sq==='a8'){solved=true;b.classList.add('hit');$('sq-a1').textContent='';$('sq-a1').classList.remove('sel');b.textContent=G.R;
+      say('<b>Ла8#. Мат!</b> Король заперт своими же пешками, классический мат по последней горизонтали. Как и ожидалось от тренера, за 0,5 секунды. ♟️🎂');confetti(e.clientX,e.clientY,90);return;}
+    b.classList.add('miss');setTimeout(()=>b.classList.remove('miss'),600);
+    const jokes={a7:'Близко! Но король просто уйдёт… ну, никуда, но мата всё равно нет 😄',a2:'Ладья смутилась и отошла на шаг назад. Не то.',b1:'Это ход для разминки. Нам нужен мат.'};
+    say(jokes[sq]||'Хм, шах не получился. Подсказка: у чёрного короля нет форточки.');}
+})();
+
+/* ---------- hall numbers ---------- */
+document.querySelectorAll('.hall-head .no').forEach((n,i)=>n.textContent='Зал '+(i+1));
+
+/* ---------- quiz: every answer moves on ---------- */
+(function(){
+  const Q=[
+    {q:'На каком пике сделан кадр в панаме и горнолыжных очках?',o:['Большой Алматинский пик','Эверест','Очередь на Шымбулак','Пик Фурманова'],a:0,r:['Да! Солнце там проиграло всухую','Эверест пока в списке дел','Там бы она обогнала всю очередь','Близко! Фурманов — это кадр, где она на вершине']},
+    {q:'Что говорит экспонат, когда до вершины ещё два часа?',o:['«Ещё чуть-чуть»','«Вид будет того стоить»','«Я не устала, это рюкзак устал»','Ничего. Молча обгоняет всех'],a:-1,r:['Классика. Чуть-чуть длиной в два часа','И ведь каждый раз стоит','Рюкзак подтверждает','Самый пугающий вариант для попутчиков']},
+    {q:'Ты на велике в Астане. Впереди лужа размером с Капшагай. Твои действия?',o:['Объезжаю по газону, как профи','Еду насквозь, я водоплавающая','Слезаю и несу велик, как ребёнка','Жду лета'],a:-1,r:['Газон не согласен, но молчит','Брызги — это тоже искусство','Самый заботливый вариант','Летом там будет пыль. Удачи']},
+    {q:'Главный враг велосипедиста в городе:',o:['Самокат с двумя пассажирами','Бордюр высотой с Хан-Тенгри','Встречный ветер. Он всегда встречный','Таксист «на минутку» на велодорожке'],a:-1,r:['Едут вдвоём, тормозят никак','Покорить можно, но с велосипедом сложнее','Физика бессильна, это Астана','Минутка длиной в вечность']},
+    {q:'Велодорожка внезапно закончилась. Что дальше?',o:['Делаю вид, что так и задумано','Еду дальше по тротуару с извинениями','Достаю карту и строю маршрут через горы','Звоню Тинькову за советом'],a:-1,r:['Уверенность — половина успеха','Вежливость — главный тормоз','Типичная Аиша','Он скажет: «Крути педали»']},
+    {q:'Как называется взятие пешки, которая только что прошла через бьющее поле на два хода?',o:['Взятие на проходе','Рокировка','Гамбит','Пат'],a:0,r:['Да! En passant, любимая ловушка для новичков','Это совсем другое правило с королём и ладьёй','Гамбит — это жертва в дебюте','Пат — это ничья, когда ходить некуда']},
+    {q:'Какая фигура, кроме пешек, может сделать самый первый ход в партии?',o:['Ферзь','Слон','Конь','Ладья'],a:2,r:['Ферзь заперт пешками','Слон тоже стоит за пешками','Конечно, конь! Он прыгает через всех','Ладья в углу ждёт своего часа']},
+    {q:'Что такое «ферзевый гамбит»?',o:['Только сериал на Netflix','Дебют 1.d4 d5 2.c4','Когда ферзь убегает от проблем','Торт в шахматную клетку'],a:1,r:['Сериал назывался «Ход королевы», а дебют был раньше','Верно! Белые предлагают пешку c4','Так делают только люди, не ферзи','Звучит вкусно, но нет']},
+    {q:'Её подпись к фото у картины в 2025 году:',o:['«Где тут выход?»','«Искусство — это застывшее время»','«Картина смотрит на меня»','«Я тут случайно»'],a:1,r:['Это подпись нашего лектора','Да. Глубоко, как и положено экспонату','Это подпись картины','Случайно в музее она не бывает']},
+    {q:'Где она сидела на скале в октябре?',o:['Чарын','Каппадокия','Крыша MNU','Бурабай'],a:3,r:['Красиво, но нет','Это в планах, судя по 🇹🇷','Охрана была бы против','Бурабай! Скалы, сосны и 🪶']},
+    ];
+  const box=$('quiz');let i=0,score=0;
+  const show=()=>{const q=Q[i];
+    box.innerHTML=`<div class="hint">Вопрос ${i+1} из ${Q.length}</div><h3 style="font-family:var(--body);font-weight:800;font-size:19px;line-height:1.3;margin:0">${q.q}</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">${q.o.map((o,k)=>`<button class="btn" style="background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--wall2);border:1.5px solid var(--wall2);text-align:left;font-size:15.5px;padding:12px 14px" data-k="${k}">${o}</button>`).join('')}</div>
+      <div class="answer" id="qa"></div>`;
+    box.querySelectorAll('[data-k]').forEach(b=>b.onclick=e=>{
+      if(box.dataset.lock)return;box.dataset.lock=1;const k=+b.dataset.k;const ok=q.a===-1||k===q.a;if(ok)score++;
+      b.style.background=ok?'#d7f3e1':'#ffe1dd';b.style.borderColor=ok?'#7ccf9b':'#ff9d93';
+      if(!ok)box.querySelector(`[data-k="${q.a}"]`).style.background='#d7f3e1';
+      $('qa').innerHTML=(ok?'✅ ':'🙃 ')+q.r[k]+(q.a===-1?' <span style="color:var(--ink2)">(тут все ответы верные)</span>':'');
+      pops(e.clientX,e.clientY,ok?['✨','🩷','⭐']:['🙃','😅'],ok?8:4);
+      const nx=document.createElement('button');nx.className='btn peach';nx.textContent=i<Q.length-1?'Следующий вопрос':'Узнать результат';
+      nx.onclick=()=>{delete box.dataset.lock;i++;i<Q.length?show():finish();};box.appendChild(nx);
+      nx.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'});});};
+  const finish=()=>{const t=score===Q.length?'Главный эксперт по Аише. Или это сама Аиша 👀':score>=Q.length-2?'Почётный смотритель музея':score>=Q.length/2?'Посетитель с потенциалом':'Турист, зашедший погреться. Тоже приветствуется 🫖';
+    box.innerHTML=`<div class="hint">Результат</div><div class="counter" style="font-size:40px;color:var(--peach)">${score} / ${Q.length}</div><h3 style="font-family:var(--body);font-weight:800;font-size:19px;margin:0">${t}</h3>
+      <p style="font-weight:600;color:var(--ink2)">Награда за любой результат: кусок торта из следующего зала.</p><button class="btn" id="qagain">Пройти ещё раз</button>`;
+    confetti(innerWidth/2,innerHeight*.4,100);$('qagain').onclick=()=>{i=0;score=0;show();};};
+  show();
+})();
+
+/* ---------- pony hosts on every hall ---------- */
+if(typeof pony==='function'){const hosts=['twilight','dash','flutter','pinkie','rarity','aj','derpy'];
+  document.querySelectorAll('.hall-head').forEach((h,i)=>{const d=document.createElement('div');d.className='host';d.innerHTML=pony(P[hosts[i%hosts.length]]);h.appendChild(d);});}
+
+/* ---------- floating gummy bears ---------- */
+(function(){const C=['#ff3d8f','#ffcf4a','#7ee0b8','#9b6bff','#ff8a3d','#ff9fcb'];
+  const bear=c=>`<svg viewBox="0 0 40 52"><g fill="${c}" opacity=".9"><circle cx="9" cy="7" r="6"/><circle cx="31" cy="7" r="6"/><circle cx="20" cy="15" r="11"/><ellipse cx="20" cy="35" rx="13" ry="15"/><circle cx="6" cy="28" r="5"/><circle cx="34" cy="28" r="5"/><circle cx="10" cy="47" r="5.5"/><circle cx="30" cy="47" r="5.5"/></g><ellipse cx="15" cy="12" rx="3" ry="2" fill="#fff" opacity=".6"/><ellipse cx="14" cy="30" rx="3" ry="5" fill="#fff" opacity=".45"/></svg>`;
+  const spots=[[4,12],[86,22],[2,48],[90,60],[6,82],[84,90],[48,6]];
+  spots.forEach((p,i)=>{const g=document.createElement('div');g.className='gummy';g.innerHTML=bear(C[i%C.length]);g.style.left=p[0]+'vw';g.style.top=p[1]+'vh';g.style.animationDelay=(-i*1.3)+'s';document.body.prepend(g);});
+})();
+
+/* ---------- Oleg Tinkov pops in from the sides ---------- */
+(function(){ if(RM)return;
+  const T=[
+    {img:'tinkov2.png',t:'Двадцать лет? Это уже не возраст, это бизнес-план. Одобряю 👍'},
+    {img:'tinkov4.png',t:'Аиша, если что, в Tinkoff-Saxo для тебя всегда есть место в команде 🚴'},
+    {img:'tinkov3.png',t:'Мармеладки — лучшая инвестиция года. Записывай.'},
+    {img:'tinkov1.png',t:'Я такой как все. Но поздравлять на розовом сайте с пони пришлось впервые.'},
+    {img:'tinkov2.png',t:'Тиньков поясняет: шахматы — это бизнес, где все фигуры на виду.'},
+    {img:'tinkov4.png',t:'Крути педали, на ветер в Астане не смотри!'},
+    {img:'tinkov3.png',t:'Пони — это стартап. Дружба — это капитализация. С днём рождения!'},
+    {img:'tinkov1.png',t:'Если спросят, кто ей подарил этот сайт, — не я. Но идея отличная.'}
+  ];
+  const el=document.createElement('button');el.className='tinkov l';el.setAttribute('aria-label','Олег Тиньков поздравляет. Нажми, чтобы спрятать');
+  document.body.appendChild(el);let k=0,side=0,timer;
+  const show=()=>{const it=T[k++%T.length];side^=1;
+    el.className='tinkov '+(side?'r':'l');
+    el.innerHTML=`<span class="say">${it.t}<span class="tag">Тиньков поясняет (почти цитата)</span></span><img src="img/${it.img}" alt="Олег Тиньков">`;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('on')));
+    clearTimeout(timer);timer=setTimeout(()=>el.classList.remove('on'),5200);};
+  el.onclick=e=>{el.classList.remove('on');pops(e.clientX,e.clientY,['🍬','🩷','💸'],8);};
+  setTimeout(show,5000);setInterval(show,17000);
+})();
+
+/* ---------- ponies ---------- */
+if(typeof pony==='function'){ $('ponies').innerHTML=['aj','rarity','twilight','dash','pinkie','flutter'].map(k=>pony(P[k])).join(''); }
+
+/* ---------- reveal on scroll (content stays visible without it) ---------- */
+if('IntersectionObserver' in window && !RM){
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target);}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('pre');io.observe(el);}});
+}
+
+$('party').onclick=()=>{confetti();pops(innerWidth/2,innerHeight/2,['🎂','🏔️','♟️','🎨','🩷'],12);};
+setTimeout(()=>confetti(innerWidth/2,innerHeight*.25,90),700);
+</script>
+</body>
+</html>
